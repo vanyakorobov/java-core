@@ -3,6 +3,7 @@ package org.example.model;
 import java.util.Objects;
 
 public class Contact {
+
     private String name;
     private String phone;
     private String email;
@@ -45,19 +46,6 @@ public class Contact {
 
     public void setGroup(String group) {
         this.group = group;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Contact contact = (Contact) o;
-        return Objects.equals(name, contact.name) && Objects.equals(phone, contact.phone);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, phone);
     }
 
     @Override
