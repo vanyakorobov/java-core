@@ -17,7 +17,8 @@ public class Main {
                     "4 - Показать контакты по группе\n" +
                     "5 - Поиск контакта по имени\n" +
                     "6 - Поиск контакта по номеру телефона\n" +
-                    "7 - Выход");            int choice = scanner.nextInt();
+                    "7 - Выход");
+            int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {

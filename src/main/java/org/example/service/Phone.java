@@ -13,6 +13,25 @@ public class Phone {
     public void addContact(String name, String phone, String email, String group) {
         Contact newContact = new Contact(name, phone, email, group);
 
+        if (name == null || name.trim().isEmpty()) {
+            System.out.println("Имя не может быть пустым.");
+            return;
+        }
+
+        if (phone == null || phone.trim().isEmpty() || !phone.matches("\\d+")) {
+            System.out.println("Номер телефона должен быть представлен в числовом формате и не может быть пустым.");
+            return;
+        }
+
+        if (email == null || email.trim().isEmpty() || !isValidEmail(email)) {
+            System.out.println("Некорректный адрес электронной почты.");
+            return;
+        }
+
+        if (group == null || group.trim().isEmpty()) {
+            System.out.println("Группа не может быть пустой.");
+            return;
+        }
 
         if (contactSet.add(newContact)) {
             contactList.add(newContact);
@@ -23,6 +42,12 @@ public class Phone {
         }
     }
 
+    private boolean isValidEmail(String email) {
+        int atIndex = email.indexOf('@');
+        int dotIndex = email.lastIndexOf('.');
+        return atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length() - 1;
+    }
+
     public void printContacts() {
         Iterator<Contact> iterator = contactList.iterator();
         while (iterator.hasNext()) {
@@ -31,7 +56,7 @@ public class Phone {
         }
     }
 
-       public void printContactsByGroup(String group) {
+    public void printContactsByGroup(String group) {
         List<Contact> contactsInGroup = contactMap.get(group);
         if (contactsInGroup != null && !contactsInGroup.isEmpty()) {
             System.out.println("Контакты в группе '" + group + "':");
